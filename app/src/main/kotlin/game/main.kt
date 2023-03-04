@@ -1,6 +1,6 @@
 package game
 
 fun main() {
-    snakeGame.run()
+    SnakeGame.run()
 }
 
