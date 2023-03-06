@@ -30,6 +30,11 @@ dependencies {
     implementation("com.google.guava:guava:31.1-jre")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+
+//    implementation("org.jline:jline-console:3.22.0")
+//    implementation("org.jline:jline:3.22.0")
+
+    implementation("com.dorkbox:Console:3.8")
 }
 
 application {

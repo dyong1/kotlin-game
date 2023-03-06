@@ -1,8 +1,10 @@
 package game
 
+import dorkbox.console.Console
 import kotlinx.coroutines.*
 import java.time.Instant
 import java.util.*
+
 
 const val FPS = 60L
 
@@ -13,6 +15,8 @@ class Game {
 
     fun run() = runBlocking {
         var prev = Instant.now()
+
+
 
         launch(newSingleThreadContext("foo")) {
             while (true) {
@@ -106,6 +110,7 @@ class Engine(val objectContainer: ObjectContainer, val keyboard: Keyboard) {
 class Keyboard {
     // FIXME: better union type? or other pattern?
     private val events: LinkedList<Any> = LinkedList()
+    private val reader = Console.`in`()
 
     fun lastKeyPress(): KeyPressEvent? {
         return this.events.findLast { it is KeyPressEvent } as? KeyPressEvent
@@ -116,8 +121,8 @@ class Keyboard {
     }
 
     suspend fun accept() {
-        val byte = System.`in`.read()
-        this.events.add(KeyPressEvent(keyCode = byte.toChar()))
+        val char = this.reader.read()
+        this.events.add(KeyPressEvent(keyCode = char.toChar()))
     }
 }
 
